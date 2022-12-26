@@ -29,16 +29,13 @@ The objective of this project is to create a database of tourist attractions, wh
 ## III - LIBRARIES
 
 ***Random***
-
-    Generates randomness to create the randomized itinerary, which will be further explained further ahead.
+> Generates randomness to create the randomized itinerary, which will be further explained further ahead.
 
 ***Time***
-
-    Creates intervals of time during the execution of the code, used for aesthetic purposes, so the exhibition of the code on the terminal can simulate a “search” in the database. It was applied to the random itinerary and the personalized itinerary, which will be detailed further ahead.
+> Creates intervals of time during the execution of the code, used for aesthetic purposes, so the exhibition of the code on the terminal can simulate a “search” in the database. It was applied to the random itinerary and the personalized itinerary, which will be detailed further ahead.
 
 ***System***
-
-    Through the function system(‘cls’), the terminals’ screen is cleared, to better the aesthetic and clarity of the user interface. Was applied throughout the entire code.
+> Through the function system(‘cls’), the terminals’ screen is cleared, to better the aesthetic and clarity of the user interface. Was applied throughout the entire code.
 
 ## IV - DATABASE
 
