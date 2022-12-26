@@ -114,15 +114,14 @@ The main menu is a dictionary, in which the keys are integers and the values are
 ***menu_meu_roteiro()***
 > It’s the biggest subprogram of the code, it prints a new menu with four (4) conditions, one of them zero (0), to return, 0 - Voltar:
 
-    Condition 1 calls a new function buscar_passeios(), which has the purpose of filtering and adding the desired attraction to the list meu_roteiro. For such, 3 options are given: display all attractions - which is inside the subprogram -, and the other two options by filtering through type or schedule, which call their respective functions with parameters:
-    > The functions schedule (time) and type (category) receive the parameter to filter the values of the dictionary of attractions of the list of attractions and request the user if they wish to add the attraction to the list meu_roteiro.
+- Condition 1 calls a new function buscar_passeios(), which has the purpose of filtering and adding the desired attraction to the list meu_roteiro. For such, 3 options are given: display all attractions - which is inside the subprogram -, and the other two options by filtering through type or schedule, which call their respective functions with parameters:
+> The functions schedule (time) and type (category) receive the parameter to filter the values of the dictionary of attractions of the list of attractions and request the user if they wish to add the attraction to the list meu_roteiro.
 
-    They follow the same concept and can be replicated to whichever filter is needed.
-> 
-    Condition 2 serves for printing the attractions contained in the list meu_roteiro, if containing itineraries. If not, a timer is activated and the program notifies that there aren’t any itineraries saved.
-    Then, it asks if the user wishes to save the itinerary. If yes, it creates a new dictionary and establishes the itinerary’s ID as the largest ID used in the list meus_roteiros plus one (1), in other words (largest ID)+1=  (new itinerary’s ID). It also asks the user to insert a name for the itinerary, and then adds it to the list meus_roteiros and deletes the list meu_roteiro, so the user can create a new itinerary in the future.
->
-    Condition 3 prints the itineraries saved in the list meus_roteiros through a for, and requests the user to select one of them to view the description of the itinerary. After selecting, it also gives the option to export the itinerary as a txt archive.
+They follow the same concept and can be replicated to whichever filter is needed.
+
+- Condition 2 serves for printing the attractions contained in the list meu_roteiro, if containing itineraries. If not, a timer is activated and the program notifies that there aren’t any itineraries saved. Then, it asks if the user wishes to save the itinerary. If yes, it creates a new dictionary and establishes the itinerary’s ID as the largest ID used in the list meus_roteiros plus one (1), in other words (largest ID)+1=  (new itinerary’s ID). It also asks the user to insert a name for the itinerary, and then adds it to the list meus_roteiros and deletes the list meu_roteiro, so the user can create a new itinerary in the future.
+
+- Condition 3 prints the itineraries saved in the list meus_roteiros through a for, and requests the user to select one of them to view the description of the itinerary. After selecting, it also gives the option to export the itinerary as a txt archive.
 
 The function ***role_aleatorio()*** activates a graphic timer to simulate the processing of the machine, then generates two (2) random numbers, one representing the number of attractions that will be selected and the other to select by the numbers of the attractions in the list atracoes. After that, it asks the user if they wish to save the random itinerary in the list meus_roteiros, so that it can be accessed and exported in the future.
 
