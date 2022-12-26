@@ -1,212 +1,165 @@
-**SI-IT**
+# Project Si-It
 
-**I - INSTRUÇÕES INICIAIS**
+## I - INITIAL INSTRUCTIONS
 
-*Main.py* - é o núcleo do código.
+***Main.py*** - is the core of the code.
 
-*Auth_functions.py* - é o código do login.
+***Auth_functions.py*** - is the code for the login.
 
-*Sql_functions.py* - é o código do banco de dados.
+***Sql_functions.py*** - is the code for the database.
 
-*Mock_data.py* - está alguns dados de teste do código main.
+***Mock_data.py*** - contains mock data for testing purposes of the main code.
 
-*Credits_functions.py* - está elementos gráficos e créditos.
+***Credits_functions.py*** - contains some graphic elements and the credits.
 
-*Main_database.db* - é o banco de dados.
+***Main_database.db*** - is the database.
 
+All of the code listed above was developed on VSCode and can be opened normally as a python archive, all except ***main_databade.db***, that requires extra steps:
 
-**Todos foram feitos no VSCode e podem ser abertos normalmente como arquivo python, exceto o main_database.db que precisa de alguns passos extras:**
+1) Install the extension SQLite, on VSCode
 
-	1) Instale a extensão SQLite
+2) Press, on your keyboard, the commands *Ctrl+Shift+P* to open the command palette and search and select the tab SQLite: Open Database. 
 
-	2) Ctrl+Shift+P para abrir a command pallete 
-	procure e selecione SQLite: Open Database.
+3) While still in the command palette, select the archive ***main_databade.db***, in which the tab **SQLITE EXPLORER** will appear in the lower part of the VSCode Explorer (*Ctrl+Shift+E*), after which you will use the arrows to navigate the archives.
 
-	3) Ainda no command pallete, selecione main-database.db: 
-	a aba SQLITE EXPLORER aparecerá na parte inferior do Explorer(Ctrl+Shift+E) do VScode,
-	clicar nas setas.
+## II - SUMMARY
 
+The objective of this project is to create a database of tourist attractions, which, when combined, become a travel itinerary. We also implemented the login and personalized itineraries resources, as well as the categorization of the attractions, the saving and export of itineraries, and the creation of random unique combinations. To do so, we utilized not only lists and dictionaries, but also functions, iterations, conditionals, string and archive manipulation, and SQLite to create a simplified database.
 
-**II SUMÁRIO**
+## III - LIBRARIES
 
-O objetivo deste código é criar um banco de dados de atrações turísticas, que combinados se tornem roteiros turísticos. Também implementamos recursos de acesso personalizado (login), criação de roteiros personalizados, categorização das atrações turísticas, salvar e exportar roteiros e criação de roteiros aleatórios. Para tal, utilizamos abundantemente listas e dicionários, mas também funções, iterações, condicionais, manipulação de strings e arquivos, e o SQLite para criação de um banco de dados simplificado.
+***Random***
 
-**III LIBRARIES**
+    Generates randomness to create the randomized itinerary, which will be further explained further ahead.
 
-*Random*
+***Time***
 
-	Geração de aleatóriedades para criar o roteiro aleatório, 
-	será explicado detalhadamente mais adiante.
+    Creates intervals of time during the execution of the code, used for aesthetic purposes, so the exhibition of the code on the terminal can simulate a “search” in the database. It was applied to the random itinerary and the personalized itinerary, which will be detailed further ahead.
 
-*Time*
+***System***
 
-	Criação de pequenos intervalos de tempo na execução do código, 
-	com  finalidade estética de na exibição do código no terminal simular uma “busca” no banco de dados. 
-	Fizemos uso desse recurso no roteiro aleatório e no roteiro personalizado, 
-	serão explicados detalhadamente mais adiante.
+    Through the function system(‘cls’), the terminals’ screen is cleared, to better the aesthetic and clarity of the user interface. Was applied throughout the entire code.
 
-*System*
+## IV - DATABASE
 
-	Por meio da função system(‘cls’) limpar a tela do terminal, para melhor estética e clareza. 
-	Foi utilizado por todo o código
+*SQLite* is a library developed in C language which implements an SQL (*Sequenced Query Language*) relational database, in the form of an archive. Thus, it’s possible to make all the queries to the database and test the program as a whole.
 
+### FUNCTIONS
+***connect_to_database()***
+> This function is responsible for creating a connection with the SQLite database. It also creates tables of attractions and users, if not already existent. It also returns the connection created.
 
-**IV BANCO DE DADOS**
+***create_attractions(connection)***
+> This function is responsible for the insertion of data in the table of attractions of the database. It receives the SQLite connection as a parameter, and through the connection can transact the query and insert the attractions into the database.
 
-*SQLITE é uma biblioteca feita na linguagem C que implementa um banco de dados relacional SQL em forma de arquivo. 
-Dessa forma, é possível fazer todas as “queries” ao banco e assim conseguir testar o programa como um todo.*
+***create_user(connection, user)***
+> This function is responsible for creating a user in the database. It receives the connection and user as parameters, and adds to the table of users the “user”.
 
-	*connect_to_database()*
-	Essa função é responsável por criar uma conexão com o banco de dados sqlite;
-	Criar as tabelas de atrações e usuários, caso elas não existem.
-	Retornar a conexão criada.
+***select_attractions(connection)***
+> This function is responsible for returning the attractions in the database. It receives the connection as a parameter and searches the attractions in the database throughout the query ‘SELECT’, transforming them into a list of tuples. Then, it transforms the list of tuples into a list of dictionaries and returns a list of users.
 
-	*create_attractions(connection)*
-	Essa função é responsável por popular a tabela de atrações no banco de dados;
-	Recebe a conexão do sqlite como parâmetro, e através dela consegue realizar a query e adicionar as atrações no banco.
+***get_attractions(connection)***
+> This function is responsible for returning the formatted attractions and receives the connection as a parameter. It receives the attractions from the function select_attractions and formats the schedule of each attraction, transforming a string into a list.
 
-	*create_user(connection, user)*
-	Essa função é responsável por criar um usuário no banco de dados;
-	Recebe a conexão e o usuário como parâmetros.
-	Adiciona na tabela usuários o ‘user’.
+## V - LOGIN
 
-	*select_attractions(connection)*
-	Essa função é responsável por retornar as atrações do banco de dados;
-	Recebe a conexão como parâmetro;
-	Busca as atrações no banco através de uma query ‘SELECT’ e transforma-as em uma lista de tuplas;
-	Transforma a lista de tuplas em uma lista de dicionários; 
-	Retorna a lista de usuários.
+The authentication operates in a way that it’s possible to create a new account and login into the program with a password and passcode generated by the program.
 
-	*get_attractions(connection)*
-	Essa função é responsável por retornar as atrações formatadas;
-	Recebe a conexão como parâmetro;
-	Pega as atrações da função select_attractions e formata os horários de cada atração, transformando a string em lista.
+***criar_conta(contas, connection)***
+> This function is responsible for creating the user’s account. It receives as parameters a list of accounts and the connection to the database and is responsible for verifying if the user’s CPF already exists in the database. If not existent, the function receives the user’s data through user inputs. Then, it calls the function create_user, transmitting the user’s data and the connection.
 
+***acesso_conta(contas)***
+> This function is responsible for logging the user into the program and receives as parameters the list of accounts. It checks if the user’s passcode and password are correct. If correct, returns True and proceeds with the application. If not, returns False and the user can attempt to log in again.
 
-**V LOGIN**
+## VI - ATTRACTIONS AND ITINERARIES
 
-A autenticação funciona de tal forma que é possível criar uma conta nova e fazer o login com a senha e o código gerado pelo programa.
+The following general structure was defined:
 
-	criar_conta(contas, connection)
-	 Essa função é responsável por criar a conta do usuário;
-	 Recebe como parâmetro a lista de contas e conexão do banco de dados;
-	 Responsável pela verificação se o CPF do usuário já existe no banco;
-	 Caso não exista, recebe os dados do usuário através dos inputs;
-	 Invoca a função create_user passando os dados do usuário e a conexão.
+    atraçao={‘ID’: integer identificador ,
+        ‘NOME’: ‘Nome da Atração’,
+        ‘DESCRICAO’:’descrição da atração’,
+        ‘TIPO’:’categoria da atração’,
+        'HORARIOS’:’dia/noite,’
+        }
 
-	acesso_conta(contas)
-	 Essa função é responsável por logar o usuário no programa;
-	 Recebe como parâmetro a lista de contas;
-	 Checa se o código e a senha do usuário está correta;
-	 Se tiver, retorna True e prossegue com a aplicação;
-	 Senão, retorna False e o usuário pode fazer de novo o login..
+>Base-module of the code, with content that forms, in itself, the other lists and dictionaries, a key (ID) to facilitate the manipulation, two keys (‘NOME’ and ‘DESCRICAO’) for exhibition purposes, two keys (‘TIPO’ and ‘HORARIOS’) for filtering and searching. 
+> The keys e values are exemplary, there being infinite possibilities of filters
 
+    roteiro={‘ID’: integer identificador ,
+        ‘NOME’: ‘Nome do Roteiro’,
+        ‘ATRACOES’: [lista de atrações],
+            }
 
+> The set of attractions with identifying keys, for exhibition purposes.
 
-**VI ATRAÇÕES E ROTEIROS**
+    atracoes=[{atracao1}, {atracao2}...]
+> List containing all the attractions, to facilitate its search throughout the code.
 
-Definimos a seguinte estrutura geral:
+    roteiros=[{roteiro1}, {roteiro2}, {roteiro3}]]
+> List containing all the prepared itineraries, to facilitate the search throughout the code, through iterations.
 
-	atraçao={‘ID’: integer identificador ,
-		‘NOME’: ‘Nome da Atração’,
-		‘DESCRICAO’:’descrição da atração’,
-		‘TIPO’:’categoria da atração’,
-		'HORARIOS’:’dia/noite,’
-		}
-	// Módulo-base do código, conteúdo em si que forma as outras listas e dicionários,
-	// uma key (ID) para facilitar a manipulação, 
-	// duas keys (‘NOME’ e ‘DESCRICAO’) para fins de exibição 
-	// duas keys (‘TIPO’ e ‘HORARIOS’) para filtragem e busca. 
-	// Keys e values são exemplificativaos, mas há infinitas possibilidades
+    meu_roteiro=[{atracao1},{atracao2}... ]
+> List of attractions for the user’s personalized itinerary, which has a temporary nature. Is transformed into a dictionary, in the same format as "***roteiro={}***", when saved by the user. 
 
-	roteiro={‘ID’: integer identificador ,
-		‘NOME’: ‘Nome do Roteiro’,
-		‘ATRACOES’: [lista de atrações],
-			}
-	// Conjunto de atrações com chaves identificadoras para fins de exibição.
+    meus_roteiros=[{meu_roteiro1}, {meu_roteiro2}...]
+> List of personalized itineraries created by the user.
 
-	atracoes=[{atracao1}, {atracao2}...]
-	// Lista com todas as atrações, para facilitar a busca ao longo do código.
+**For better organization, the attractions and the prepared itineraries are located in the archive mock_data.py.**
 
-	roteiros=[{roteiro1}, {roteiro2}, {roteiro3}]]
-	// Lista de roteiros já prontos para facilitar sua busca no código por meio de iterações.
+## VII - MAIN MENU
 
-	meu_roteiro=[{atracao1},{atracao2}... ]
-	// Lista de atrações para o roteiro personalizado do usuário, de natureza temporária, 
-	// é transformada em dicionário no mesmo formato do “roteiro={}” quando é salvo pelo usuário.
+The main menu is a dictionary, in which the keys are integers and the values are strings. They are printed through a for, being the keys the commands the user must insert to navigate the menu, in which each option calls a subprogram. The number zero (0)  was determined to be the option of exit/return throughout the entire code.
 
-	meus_roteiros=[{meu_roteiro1}, {meu_roteiro2}...]
-	// Lista dos roteiros personalizados criados pelo usuário.
+### SUBPROGRAMS
 
+***menu_roteiros()***
+> It prints the ID and the NOME of each prepared itinerary and provides the possibility of exporting as a txt archive or returning back to the main menu.
 
-*Para melhor organização, as atrações e os roteiros prontos ficam localizados no arquivo mock_data.py.*
+***menu_meu_roteiro()***
+> It’s the biggest subprogram of the code, it prints a new menu with four (4) conditions, one of them zero (0), to return, 0 - Voltar:
 
+    Condition 1 calls a new function buscar_passeios(), which has the purpose of filtering and adding the desired attraction to the list meu_roteiro. For such, 3 options are given: display all attractions - which is inside the subprogram -, and the other two options by filtering through type or schedule, which call their respective functions with parameters:
+    > The functions schedule (time) and type (category) receive the parameter to filter the values of the dictionary of attractions of the list of attractions and request the user if they wish to add the attraction to the list meu_roteiro.
 
-**VII MENU PRINCIPAL**
+    They follow the same concept and can be replicated to whichever filter is needed.
+> 
+    Condition 2 serves for printing the attractions contained in the list meu_roteiro, if containing itineraries. If not, a timer is activated and the program notifies that there aren’t any itineraries saved.
+    Then, it asks if the user wishes to save the itinerary. If yes, it creates a new dictionary and establishes the itinerary’s ID as the largest ID used in the list meus_roteiros plus one (1), in other words (largest ID)+1=  (new itinerary’s ID). It also asks the user to insert a name for the itinerary, and then adds it to the list meus_roteiros and deletes the list meu_roteiro, so the user can create a new itinerary in the future.
+>
+    Condition 3 prints the itineraries saved in the list meus_roteiros through a for, and requests the user to select one of them to view the description of the itinerary. After selecting, it also gives the option to export the itinerary as a txt archive.
 
-O menu principal é um dicionário, as keys são integers e os values são strings. Que são printados por meio de um for, sendo as  keys  os comandos que o usuário deve digitar para navegar pelo menu, o zero (0) ficou convencionado como a opção de sair/voltar em todo código. Cada opção chama um subprograma.
+The function ***role_aleatorio()*** activates a graphic timer to simulate the processing of the machine, then generates two (2) random numbers, one representing the number of attractions that will be selected and the other to select by the numbers of the attractions in the list atracoes. After that, it asks the user if they wish to save the random itinerary in the list meus_roteiros, so that it can be accessed and exported in the future.
 
-**VIII SUBPROGRAMAS**
+Lastly, the archive credits_functions.py has two functions: ***siit()*** and ***credit()***, which have graphic and aesthetic purposes. They print the brand and the credits of the team, utilizing ASCII art.
 
-menu_roteiros() printa o ID e o NOME de cada roteiro pronto e fornece a condição de exportar como  um arquivo txt ou voltar para o menu principal.
+## **SIIT**
 
-menu_meu_roteiro() é o maior subprograma do código, ele printa um novo menu com 4 condições, sendo uma delas o 0 - Voltar:
-	
-	// A condição 1 chama uma nova função buscar_passeios() que tem como finalidade filtrar
-	e adicionar a atração desejada a lista meu_roteiro. Para tal, é oferecido 3 opções:
-	uma de exibir todas as atrações, que fica dentro do próprio subprograma,
-	E outras duas opções de filtro por tipo ou horário,
-	chama suas respectivas funções com parâmetro:
-	As funções horario(turno) e tipo(categoria) recebem o parâmetro para filtrar 
-	nos values dos dicionários de atrações da lista atracoes
-	e solicita ao usuário se ele deseja adicionar a atração à lista meu_roteiro. 
-	Seguem o mesmo conceito e podem ser replicados para qualquer filtro.
+### **Projeto 1 // CESAR School**
 
-	// A condição 2 serve para imprimir as atrações contidas na lista meu_roteiro,
-	caso haja roteiros, se não houver, é ativado um timer e avisa que não roteiro.
-	Em seguida, pergunta se o usuário deseja salvar o roteiro, caso sim: ele cria um novo dicionário,
-	que estabelece o ID como o maior número utilizado por outros IDs +1,
-	pede para o usuário digitar o nome do roteiro, adiciona o roteiro à lista meus_roteiros 
-	e apaga a lista meu_roteiro para que o usuário possa criar um novo roteiro futuramente.
+**TEAM:**
 
-	// A condição 3 printa os roteiros salvos na lista meus_roteiros por meio de um for,
-	solicita que o usuário selecione um deles para receber a descrição
-	e dá a opção de exportá-lo como um arquivo txt.
-	
-A função **role_aleatorio()** ativa um timer gráfico para simular um processamento da máquina, em seguida gera dois números aleatórios, um para a quantidade de atrações que serão sorteadas e outro para sortear este número de atrações da lista atracoes. Por fim, ele pergunta ao usuário se deseja salvá-la na lista meus_roteiros para que possa ser acessada e exportada posteriormente.
+Ana Beatriz Alves - abxa@cesar.school
 
-Por fim, mas não menos importante, o arquivo **credits_functions.py** tem duas funções: siit() e credit() que tem objetivos gráficos e imprimem a marca e o os créditos do time utilizando ASCII art.
+Ana Beatriz Rocha - abrbd@cesar.school
 
-**SIIT**
+Caio Vila Nova - csvn@cesar.school
 
-PROJETO 1 // CESAR.SCHOOL
+Maria Clara Wanderley - mcwa@cesar.school
 
-**EQUIPE:**
+Edmar Rocha - era@cesar.school
 
-Ana Beatriz Alves // Ciência da Computação - 1° Período A/2022.2 - abxa@cesar.school
+Guilherme Silveira - gsa3@cesar.school
 
-Ana Beatriz Rocha // Design - 1° Período 2022.2 - abrbd@cesar.school
+Pedro Coelho - pcdr@cesar.school
 
-Caio Vila Nova // Design - 1° Período 2022.2 - csvn@cesar.school
+Ricardo Lima - rfsl@cesar.school
 
-Clara Wanderley // Design - 1° Período 2022.2 - mcwa@cesar.school
+Sofia Valadares - svc3@cesar.school
 
-Edmar Rocha // Ciência da Computação 1° Período B/2022.2 - era@cesar.school
+Virna Amaral - vfpa@cesar.school
 
-Guilherme Silveira // Ciência da Computação 1° Período A/2022.2 - gsa3@cesar.school
+**ADVISERS:**
 
-Pedro Coelho // Ciência da Computação - 1º Período B/2022.2 - pcdr@cesar.school
-
-Ricardo Lima // Design - 1° Período 2022.2 - rfsl@cesar.school
-
-Sofia Valadares // Ciência da Computação - 1° Período B/2022.2 - svc3@cesar.school
-
-Virna Amaral // Ciência da Computação - 1° Período A/2022.2 - vfpa@cesar.school
-
-
-**ORIENTADORES:**
-
-Geysa Barvaleno - gpb2@cesar.org.br
+Geysa Barvalento - gpb2@cesar.org.br
 
 Erick Simões - esm@cesar.school
 
