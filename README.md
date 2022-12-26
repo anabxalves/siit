@@ -116,7 +116,6 @@ The main menu is a dictionary, in which the keys are integers and the values are
 
 - Condition 1 calls a new function buscar_passeios(), which has the purpose of filtering and adding the desired attraction to the list meu_roteiro. For such, 3 options are given: display all attractions - which is inside the subprogram -, and the other two options by filtering through type or schedule, which call their respective functions with parameters:
 > The functions schedule (time) and type (category) receive the parameter to filter the values of the dictionary of attractions of the list of attractions and request the user if they wish to add the attraction to the list meu_roteiro.
-
 They follow the same concept and can be replicated to whichever filter is needed.
 
 - Condition 2 serves for printing the attractions contained in the list meu_roteiro, if containing itineraries. If not, a timer is activated and the program notifies that there aren’t any itineraries saved. Then, it asks if the user wishes to save the itinerary. If yes, it creates a new dictionary and establishes the itinerary’s ID as the largest ID used in the list meus_roteiros plus one (1), in other words (largest ID)+1=  (new itinerary’s ID). It also asks the user to insert a name for the itinerary, and then adds it to the list meus_roteiros and deletes the list meu_roteiro, so the user can create a new itinerary in the future.
